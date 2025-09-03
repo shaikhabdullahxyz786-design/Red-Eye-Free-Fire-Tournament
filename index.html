@@ -131,8 +131,8 @@
 <!-- INFO PAGE -->
 <div class="container hidden" id="infoPage">
   <h2>📢 Tournament Info</h2>
-  <p><b>Mode:</b> Solo / Duo / Squad</p>
-  <p><b>Map:</b> Clash Squad Maps</p>
+  <p><b>Mode:</b> Solo </p>
+  <p><b>Map:</b> Bermuda Full Map </p>
   <p><b>Timing:</b> 8:00 PM IST</p>
   <p><b>Note:</b> Be ready 10 mins before start!</p>
   <button class="btn" onclick="goBackRules()">⬅️ Back</button>
@@ -142,10 +142,8 @@
 <!-- ROOM DETAILS PAGE -->
 <div class="container hidden" id="roomPage">
   <h2>🏆 Room Details</h2>
-  <p><b>Room ID:</b> RED12345</p>
-  <p><b>Password:</b> 4321</p>
-  <p><b>QR Code:</b></p>
-  <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=RED12345" alt="QR Code">
+  <p><b>Room ID:</b>----</p>
+  <p><b>Password:</b>----</p>
   <button class="btn" onclick="goBackInfo()">⬅️ Back</button>
 </div>
 
@@ -159,8 +157,8 @@
 </div>
 
 <script>
-  const PLAYER_PASSWORD = "1234";
-  const ADMIN_PASSWORD = "admin123";
+  const PLAYER_PASSWORD = "9152";
+  const ADMIN_PASSWORD = "redeye123";
 
   let registrations = JSON.parse(localStorage.getItem("registrations")) || [];
   let registeredEmails = new Set(registrations.map(r => r.email));
@@ -216,3 +214,4 @@
 
 </body>
 </html>
+
