@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Red Eye Free Fire Tournament</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: 
+      linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+      url('https://images6.alphacoders.com/112/thumb-1920-1125465.jpg') no-repeat center center/cover;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h1 {
+    color: #ff5722;
+    text-shadow: 0 0 15px #ff5722;
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  .container {
+    width: 420px;
+    max-width: 90%;
+    margin: 30px auto;
+    padding: 30px;
+    background: rgba(0,0,0,0.85);
+    border-radius: 15px;
+    box-shadow: 0 0 25px #ff5722, 0 0 40px #00eaff inset;
+    text-align: center;
+    transition: 0.3s;
+  }
+  .container:hover {
+    box-shadow: 0 0 35px #ff5722, 0 0 50px #00eaff inset;
+  }
+
+  h2 {
+    color: #00eaff;
+    text-shadow: 0 0 10px #00eaff;
+    margin-bottom: 20px;
+  }
+
+  ul { text-align: left; font-size: 14px; line-height: 1.6; }
+
+  input {
+    width: 90%;
+    padding: 12px;
+    margin: 12px 0;
+    border-radius: 12px;
+    border: 2px solid #00eaff;
+    outline: none;
+    font-size: 14px;
+    background: rgba(255,255,255,0.95);
+    transition: 0.3s;
+  }
+  input:focus { border-color: #ffcc00; box-shadow: 0 0 12px #ffcc00; }
+
+  button {
+    width: 90%;
+    padding: 14px;
+    margin: 12px 0;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .btn {
+    background: linear-gradient(45deg, #00eaff, #ff5722);
+    color: #000;
+    box-shadow: 0 0 15px #00eaff, 0 0 15px #ff5722 inset;
+  }
+  .btn:hover {
+    background: linear-gradient(45deg, #ffcc00, #ff5722);
+    box-shadow: 0 0 25px #ffcc00, 0 0 20px #ff5722 inset;
+  }
+
+  .hidden { display: none; }
+
+  img.qr { margin-top: 10px; border-radius: 10px; box-shadow: 0 0 15px #00eaff; }
+</style>
+</head>
+<body>
+
+<h1>🔥 Red Eye Free Fire Tournament 🔥</h1>
+
+<!-- RULES PAGE -->
+<div class="container" id="rulesPage">
+  <h2>📜 Tournament Rules</h2>
+  <ul>
+    <li>No hacking, scripting, or illegal tools — disqualification.</li>
+    <li>No teaming up outside your squad.</li>
+    <li>No glitch exploitation (invisible / wall glitch).</li>
+    <li>All in-game items allowed unless specified.</li>
+    <li>Room ID & Password shared before match; joining late may miss the round.</li>
+    <li>Must join room before start time.</li>
+    <li>Registered IGN must match registration info.</li>
+    <li>Substitutes allowed only if registered.</li>
+    <li>Use own account (no account sharing).</li>
+    <li>If disconnected after match start, it's player's responsibility.</li>
+  </ul>
+  <button class="btn" onclick="goToPassword()">I Agree & Proceed</button>
+  <button class="btn" onclick="goToInfo()">View Tournament Info</button>
+  <button class="btn" onclick="goToAdmin()">Admin</button>
+</div>
+
+<!-- PASSWORD PAGE -->
+<div class="container hidden" id="passwordPage">
+  <h2>🔑 Enter Tournament Password</h2>
+  <input type="password" id="tPassword" placeholder="Enter Password">
+  <button class="btn" onclick="checkPassword()">Submit</button>
+  <button class="btn" onclick="goBackRules()">⬅️ Back</button>
+</div>
+
+<!-- REGISTRATION FORM -->
+<div class="container hidden" id="formPage">
+  <h2>📝 Registration Form</h2>
+  <input type="text" id="ign" placeholder="In-Game Name">
+  <input type="text" id="uid" placeholder="Game UID">
+  <input type="email" id="email" placeholder="Email">
+  <button class="btn" onclick="register()">Register</button>
+  <p id="slotMsg"></p>
+  <button class="btn" onclick="goBackRules()">⬅️ Back</button>
+</div>
+
+<!-- INFO PAGE -->
+<div class="container hidden" id="infoPage">
+  <h2>📢 Tournament Info</h2>
+  <p><b>Mode:</b> Solo / Duo / Squad</p>
+  <p><b>Map:</b> Clash Squad Maps</p>
+  <p><b>Timing:</b> 8:00 PM IST</p>
+  <p><b>Note:</b> Be ready 10 mins before start!</p>
+  <button class="btn" onclick="goBackRules()">⬅️ Back</button>
+  <button class="btn" onclick="goToRoom()">View Room Details</button>
+</div>
+
+<!-- ROOM DETAILS PAGE -->
+<div class="container hidden" id="roomPage">
+  <h2>🏆 Room Details</h2>
+  <p><b>Room ID:</b> RED12345</p>
+  <p><b>Password:</b> 4321</p>
+  <p><b>QR Code:</b></p>
+  <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=RED12345" alt="QR Code">
+  <button class="btn" onclick="goBackInfo()">⬅️ Back</button>
+</div>
+
+<!-- ADMIN PAGE -->
+<div class="container hidden" id="adminPage">
+  <h2>⚙️ Admin Controls</h2>
+  <input type="password" id="adminPassword" placeholder="Enter Admin Password">
+  <button class="btn" onclick="resetSlots()">Reset All Slots</button>
+  <button class="btn" onclick="goBackRules()">⬅️ Back</button>
+  <p id="adminMsg"></p>
+</div>
+
+<script>
+  const PLAYER_PASSWORD = "1234";
+  const ADMIN_PASSWORD = "admin123";
+
+  let registrations = JSON.parse(localStorage.getItem("registrations")) || [];
+  let registeredEmails = new Set(registrations.map(r => r.email));
+
+  function showPage(pageId){
+    document.querySelectorAll(".container").forEach(c => c.classList.add("hidden"));
+    document.getElementById(pageId).classList.remove("hidden");
+  }
+
+  function goToPassword(){ showPage("passwordPage"); }
+  function goToInfo(){ showPage("infoPage"); }
+  function goToRoom(){ showPage("roomPage"); }
+  function goToAdmin(){ showPage("adminPage"); }
+  function goBackRules(){ showPage("rulesPage"); }
+  function goBackInfo(){ showPage("infoPage"); }
+
+  function checkPassword(){
+    let pass = document.getElementById("tPassword").value;
+    if(pass === PLAYER_PASSWORD) showPage("formPage");
+    else if(pass === ADMIN_PASSWORD) showPage("adminPage");
+    else alert("❌ Wrong Password!");
+  }
+
+  function register(){
+    let ign = document.getElementById("ign").value.trim();
+    let uid = document.getElementById("uid").value.trim();
+    let email = document.getElementById("email").value.trim();
+    if(!ign || !uid || !email){ alert("⚠️ Fill all fields"); return; }
+    if(registeredEmails.has(email)){ document.getElementById("slotMsg").innerText="❌ Already registered!"; return; }
+    
+    let slot = registrations.length + 1;
+    registrations.push({ign, uid, email, slot});
+    registeredEmails.add(email);
+    localStorage.setItem("registrations", JSON.stringify(registrations));
+    document.getElementById("slotMsg").innerText=`✅ Registered! Slot: ${slot}`;
+
+    // 🔹 Google Sheet me bhejne ke liye
+    fetch("https://script.google.com/macros/s/AKfycbzakdvGEKG7z-ocPczHsovuQ11pmbY8oiLnrF1PL-OMMAnEK9oTjS3zLGYpku40wa3vzQ/exec", {
+      method: "POST",
+      body: JSON.stringify({ ign, uid, email, slot })
+    });
+  }
+
+  function resetSlots(){
+    let pass = document.getElementById("adminPassword").value;
+    if(pass===ADMIN_PASSWORD){
+      registrations=[]; registeredEmails=new Set();
+      localStorage.removeItem("registrations");
+      document.getElementById("adminMsg").innerText="✅ All slots cleared!";
+    } else document.getElementById("adminMsg").innerText="❌ Wrong Admin Password!";
+  }
+</script>
+
+</body>
+</html>
