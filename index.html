@@ -196,7 +196,7 @@
     document.getElementById("slotMsg").innerText=`✅ Registered! Slot: ${slot}`;
 
     // 🔹 Google Sheet me bhejne ke liye
-    fetch("https://script.google.com/macros/s/AKfycbzakdvGEKG7z-ocPczHsovuQ11pmbY8oiLnrF1PL-OMMAnEK9oTjS3zLGYpku40wa3vzQ/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbxenpUbJT5QMNKrWW7S05qPtXCk_E4W07YfqsVqRgJJ236D7fZvYJiwHhIsXo8F5gVaEg/exec", {
       method: "POST",
       body: JSON.stringify({ ign, uid, email, slot })
     });
@@ -214,5 +214,7 @@
 
 </body>
 </html>
+
+
 
 
