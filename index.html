@@ -3,722 +3,856 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Fire Tournament - Registration</title>
+    <title>Free Fire Tournament Registration</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(45deg, #0a0a0a, #1a1a2e, #16213e, #0f3460);
+            font-family: 'Orbitron', monospace;
+            background: linear-gradient(45deg, #0f0f0f, #1a1a2e, #16213e, #0f3460);
             background-size: 400% 400%;
             animation: gradientShift 8s ease infinite;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
+            color: #fff;
             overflow-x: hidden;
         }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(255, 255, 0, 0.05) 0%, transparent 50%);
-            z-index: -1;
-        }
-
+        
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-
+        
+        .gaming-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255, 0, 150, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(255, 255, 0, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
         .container {
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 107, 53, 0.3);
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .card {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #ff6b35;
             border-radius: 20px;
             padding: 40px;
             box-shadow: 
-                0 20px 40px rgba(0,0,0,0.6),
-                0 0 30px rgba(255, 107, 53, 0.2),
-                inset 0 1px 0 rgba(255,255,255,0.1);
-            max-width: 600px;
-            width: 90%;
+                0 0 50px rgba(255, 107, 53, 0.3),
+                inset 0 0 30px rgba(255, 107, 53, 0.1);
+            width: 100%;
+            animation: cardGlow 2s ease-in-out infinite alternate;
+            backdrop-filter: blur(10px);
+        }
+        
+        @keyframes cardGlow {
+            from { box-shadow: 0 0 30px rgba(255, 107, 53, 0.3), inset 0 0 20px rgba(255, 107, 53, 0.1); }
+            to { box-shadow: 0 0 60px rgba(255, 107, 53, 0.5), inset 0 0 40px rgba(255, 107, 53, 0.2); }
+        }
+        
+        .header {
             text-align: center;
+            margin-bottom: 30px;
             position: relative;
         }
-
-        .container::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #ff6b35, #00ffff, #ffff00, #ff6b35);
-            border-radius: 22px;
-            z-index: -1;
-            opacity: 0.3;
-            animation: borderGlow 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes borderGlow {
-            0% { opacity: 0.3; }
-            100% { opacity: 0.8; }
-        }
-
-        .logo {
-            font-size: 2.5em;
-            font-weight: bold;
-            background: linear-gradient(45deg, #ff6b35, #00ffff, #ffff00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        
+        .header h1 {
+            color: #ff6b35;
+            font-size: 3em;
             margin-bottom: 10px;
-            text-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
-            animation: textGlow 2s ease-in-out infinite alternate;
+            text-shadow: 
+                0 0 20px #ff6b35,
+                0 0 40px #ff6b35,
+                0 0 60px #ff6b35;
+            animation: textPulse 2s ease-in-out infinite alternate;
+            font-weight: 900;
         }
-
-        @keyframes textGlow {
-            0% { filter: brightness(1) drop-shadow(0 0 5px rgba(255, 107, 53, 0.5)); }
-            100% { filter: brightness(1.2) drop-shadow(0 0 20px rgba(255, 107, 53, 0.8)); }
+        
+        @keyframes textPulse {
+            from { text-shadow: 0 0 20px #ff6b35, 0 0 40px #ff6b35, 0 0 60px #ff6b35; }
+            to { text-shadow: 0 0 30px #ff6b35, 0 0 60px #ff6b35, 0 0 90px #ff6b35; }
         }
-
-        .subtitle {
+        
+        .header p {
             color: #00ffff;
             font-size: 1.2em;
-            margin-bottom: 30px;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px #00ffff;
         }
-
-        .rules-section {
-            text-align: left;
-            background: rgba(20, 20, 20, 0.8);
-            border: 1px solid rgba(255, 107, 53, 0.3);
-            padding: 25px;
+        
+        .rules {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(0, 255, 255, 0.1));
+            border: 1px solid #ff6b35;
             border-radius: 15px;
+            padding: 25px;
             margin-bottom: 30px;
-            border-left: 5px solid #ff6b35;
-            box-shadow: inset 0 0 20px rgba(255, 107, 53, 0.1);
+            box-shadow: inset 0 0 20px rgba(255, 107, 53, 0.2);
         }
-
-        .rules-title {
-            font-size: 1.5em;
-            background: linear-gradient(45deg, #ff6b35, #ffff00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 15px;
-            text-align: center;
-            text-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
+        
+        .rules h3 {
+            color: #ff6b35;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px #ff6b35;
         }
-
-        .rules-list {
+        
+        .rules ul {
             list-style: none;
             padding: 0;
         }
-
-        .rules-list li {
-            margin-bottom: 10px;
-            padding-left: 20px;
+        
+        .rules li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 107, 53, 0.3);
             position: relative;
-            color: #e0e0e0;
-            line-height: 1.5;
+            padding-left: 30px;
+            transition: all 0.3s ease;
         }
-
-        .rules-list li:before {
+        
+        .rules li:hover {
+            background: rgba(255, 107, 53, 0.1);
+            transform: translateX(10px);
+        }
+        
+        .rules li:before {
             content: "⚡";
+            color: #00ffff;
+            font-size: 1.2em;
             position: absolute;
             left: 0;
-            color: #00ffff;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+            text-shadow: 0 0 10px #00ffff;
         }
-
-        .input-group {
-            margin-bottom: 20px;
-            text-align: left;
+        
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
         }
-
-        .input-group label {
+        
+        .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-weight: bold;
             color: #00ffff;
-            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+            text-transform: uppercase;
+            font-size: 0.9em;
+            letter-spacing: 1px;
+            text-shadow: 0 0 5px #00ffff;
         }
-
-        .input-group input {
+        
+        .form-group input, .form-group select {
             width: 100%;
-            padding: 12px;
-            border: 2px solid rgba(255, 107, 53, 0.3);
+            padding: 15px;
             background: rgba(0, 0, 0, 0.7);
-            color: #ffffff;
+            border: 2px solid #ff6b35;
             border-radius: 10px;
+            color: #fff;
             font-size: 16px;
-            transition: all 0.3s;
+            font-family: 'Orbitron', monospace;
+            transition: all 0.3s ease;
         }
-
-        .input-group input:focus {
+        
+        .form-group input:focus, .form-group select:focus {
             outline: none;
-            border-color: #ff6b35;
-            box-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
-            background: rgba(0, 0, 0, 0.9);
+            border-color: #00ffff;
+            box-shadow: 
+                0 0 20px rgba(0, 255, 255, 0.3),
+                inset 0 0 10px rgba(0, 255, 255, 0.1);
+            transform: scale(1.02);
         }
-
-        .input-group input::placeholder {
-            color: #888;
+        
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
         }
-
+        
         .btn {
-            background: linear-gradient(45deg, #ff6b35, #f7931e, #ffcd3c);
+            background: linear-gradient(45deg, #ff6b35, #ff9500, #ff6b35);
+            background-size: 200% 100%;
             color: white;
-            padding: 15px 30px;
             border: none;
-            border-radius: 10px;
-            font-size: 18px;
+            padding: 18px 35px;
+            border-radius: 15px;
+            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s;
-            margin: 10px;
+            width: 100%;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Orbitron', monospace;
             position: relative;
             overflow: hidden;
-            text-shadow: 0 0 10px rgba(0,0,0,0.5);
-            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.4);
         }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
+        
         .btn:hover {
+            animation: buttonGlow 0.5s ease;
+            background-position: 100% 0;
             transform: translateY(-3px);
-            box-shadow: 0 15px 25px rgba(255, 107, 53, 0.6);
-            filter: brightness(1.1);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.6);
         }
-
+        
+        @keyframes buttonGlow {
+            0% { box-shadow: 0 5px 20px rgba(255, 107, 53, 0.4); }
+            50% { box-shadow: 0 5px 30px rgba(255, 107, 53, 0.8); }
+            100% { box-shadow: 0 10px 30px rgba(255, 107, 53, 0.6); }
+        }
+        
         .btn:active {
             transform: translateY(0);
         }
-
+        
+        .admin-section {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 107, 53, 0.1));
+            border: 1px solid #00ffff;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: inset 0 0 20px rgba(0, 255, 255, 0.2);
+        }
+        
+        .admin-section h3 {
+            color: #00ffff;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px #00ffff;
+        }
+        
+        .admin-toggle {
+            background: linear-gradient(45deg, #00ffff, #0099cc);
+            color: #000;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-family: 'Orbitron', monospace;
+            transition: all 0.3s ease;
+        }
+        
+        .admin-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.4);
+        }
+        
+        .registrations-list {
+            max-height: 350px;
+            overflow-y: auto;
+            border: 1px solid #ff6b35;
+            border-radius: 10px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: inset 0 0 15px rgba(255, 107, 53, 0.2);
+        }
+        
+        .registrations-list::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .registrations-list::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+        
+        .registrations-list::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #ff6b35, #00ffff);
+            border-radius: 10px;
+        }
+        
+        .registration-item {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(0, 255, 255, 0.1));
+            border: 1px solid #ff6b35;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .registration-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+        }
+        
+        .registration-item strong {
+            color: #ff6b35;
+            text-shadow: 0 0 5px #ff6b35;
+        }
+        
+        .success-message {
+            background: linear-gradient(135deg, rgba(0, 255, 0, 0.2), rgba(0, 255, 255, 0.2));
+            color: #00ff00;
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid #00ff00;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: bold;
+            text-transform: uppercase;
+            animation: successPulse 1s ease-in-out infinite alternate;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+        }
+        
+        @keyframes successPulse {
+            from { box-shadow: 0 0 20px rgba(0, 255, 0, 0.3); }
+            to { box-shadow: 0 0 40px rgba(0, 255, 0, 0.6); }
+        }
+        
+        .error-message {
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.2), rgba(255, 107, 53, 0.2));
+            color: #ff0000;
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid #ff0000;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: bold;
+            text-transform: uppercase;
+            animation: errorShake 0.5s ease-in-out;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+        }
+        
+        @keyframes errorShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        
         .hidden {
             display: none;
         }
-
-        .success-message {
-            background: rgba(40, 167, 69, 0.2);
-            border: 1px solid rgba(40, 167, 69, 0.5);
-            color: #00ff00;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+        
+        .admin-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
         }
-
-        .error-message {
-            background: rgba(220, 53, 69, 0.2);
-            border: 1px solid rgba(220, 53, 69, 0.5);
-            color: #ff4444;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            text-shadow: 0 0 5px rgba(255, 68, 68, 0.5);
-            box-shadow: 0 0 20px rgba(255, 68, 68, 0.2);
-        }
-
-        .slots-section {
-            text-align: left;
-            background: rgba(20, 20, 20, 0.8);
-            border: 1px solid rgba(0, 255, 255, 0.3);
-            padding: 20px;
-            border-radius: 15px;
-            margin-top: 20px;
-        }
-
-        .slot-item {
-            background: rgba(40, 40, 40, 0.9);
-            border: 1px solid rgba(255, 107, 53, 0.3);
-            color: #e0e0e0;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 10px;
-            border-left: 4px solid #00ffff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            transition: all 0.3s;
-        }
-
-        .slot-item:hover {
-            transform: translateX(5px);
-            border-left-color: #ff6b35;
-            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.2);
-        }
-
-        .slot-number {
-            font-weight: bold;
-            color: #ffff00;
-            font-size: 1.1em;
-            text-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
-        }
-
-        .nav-buttons {
-            margin-top: 30px;
-        }
-
-        .nav-btn {
-            background: rgba(108, 117, 125, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #ffffff;
-            padding: 10px 20px;
+        
+        .admin-input {
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #00ffff;
             border-radius: 8px;
-            cursor: pointer;
-            margin: 0 5px;
+            color: #fff;
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .admin-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .slot-counter {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 107, 53, 0.2));
+            border: 2px solid #ffd700;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        }
+        
+        .slot-counter h4 {
+            color: #ffd700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px #ffd700;
+        }
+        
+        .slot-number {
+            font-size: 2.5em;
+            font-weight: 900;
+            color: #ff6b35;
+            text-shadow: 0 0 20px #ff6b35;
+            animation: slotPulse 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes slotPulse {
+            from { text-shadow: 0 0 20px #ff6b35; }
+            to { text-shadow: 0 0 40px #ff6b35, 0 0 60px #ff6b35; }
+        }
+        
+        .password-info {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(0, 255, 255, 0.1));
+            border: 1px solid #ffd700;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .password-info h4 {
+            color: #ffd700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        .password-display {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #ff6b35;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Orbitron', monospace;
+            font-weight: bold;
+            color: #00ffff;
+            font-size: 1.2em;
+            text-shadow: 0 0 10px #00ffff;
+        }
+        
+        .export-section {
+            margin-top: 20px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(0, 255, 0, 0.1), rgba(0, 255, 255, 0.1));
+            border: 1px solid #00ff00;
+            border-radius: 10px;
+        }
+        
+        .export-btn {
+            background: linear-gradient(45deg, #00ff00, #00cc88);
+            padding: 12px 25px;
+            margin: 5px;
             font-size: 14px;
-            transition: all 0.3s;
-        }
-
-        .nav-btn:hover {
-            background: rgba(255, 107, 53, 0.8);
-            border-color: #ff6b35;
-            box-shadow: 0 0 15px rgba(255, 107, 53, 0.4);
-        }
-
-        .admin-btn {
-            background: linear-gradient(45deg, #dc3545, #c82333);
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                padding: 20px;
-            }
-            
-            .logo {
-                font-size: 2em;
-            }
-            
-            .btn {
-                width: 100%;
-                margin: 5px 0;
-            }
         }
     </style>
 </head>
 <body>
+    <div class="gaming-bg"></div>
     <div class="container">
-        <!-- Rules Page -->
-        <div id="rulesPage">
-            <div class="logo">🔥 FREE FIRE TOURNAMENT 🔥</div>
-            <div class="subtitle">Get Ready to Win!</div>
-            
-            <div class="rules-section">
-                <div class="rules-title">🎮 TOURNAMENT RULES</div>
-                <ul class="rules-list">
-                    <li>No hacking, scripting, or using illegal tools — results in disqualification.</li>
-                    <li>No teaming up with other squads outside your team.</li>
-                    <li>No glitch exploitation (e.g., invisible glitch, wall glitch).</li>
-                    <li>Weapons/Items: Unless specified, all in-game items are allowed.</li>
-                    <li>Custom Room ID & Password will be shared before the match starts — joining late may mean you miss the round.</li>
-                    <li>Must join the room before the start time.</li>
-                    <li>Registered IGN (in-game name) must match the one provided during registration.</li>
-                    <li>Substitute players allowed only if registered beforehand.</li>
-                    <li>Must use their own account (no account sharing).</li>
-                    <li>If a player disconnects after the match starts, they cannot rejoin.</li>
-                </ul>
-            </div>
-            
-            <button class="btn" onclick="proceedToPassword()">
-                ✅ I Agree - Proceed to Registration
-            </button>
-        </div>
-
-        <!-- Password Page -->
-        <div id="passwordPage" class="hidden">
-            <div class="logo">🔒 ENTER PASSWORD</div>
-            <div class="subtitle">For Registered Players Only</div>
-            
-            <div id="passwordError" class="error-message hidden">
-                Wrong password! Please enter the correct password.
-            </div>
-            
-            <div class="input-group">
-                <label for="tournamentPassword">Tournament Password:</label>
-                <input type="password" id="tournamentPassword" placeholder="Enter Password" 
-                       onkeypress="if(event.key==='Enter') checkPassword()">
-            </div>
-            
-            <button class="btn" onclick="checkPassword()">
-                🚀 Enter Tournament
-            </button>
-            
-            <div class="nav-buttons">
-                <button class="nav-btn" onclick="goToRules()">← Back to Rules</button>
-            </div>
-        </div>
-
-        <!-- Registration Form Page -->
-        <div id="registrationPage" class="hidden">
-            <div class="logo">📝 REGISTRATION FORM</div>
-            <div class="subtitle">Fill Your Details</div>
-            
-            <div id="registrationSuccess" class="success-message hidden"></div>
-            <div id="registrationError" class="error-message hidden"></div>
-            
-            <form id="registrationForm">
-                <div class="input-group">
-                    <label for="ingameName">In-Game Name (IGN):</label>
-                    <input type="text" id="ingameName" required placeholder="Your Free Fire Name">
+        <div class="card">
+            <!-- Rules and Initial Screen -->
+            <div id="rulesScreen">
+                <div class="header">
+                    <h1>🔥 FREE FIRE TOURNAMENT</h1>
+                    <p>⚔️ ELITE BATTLE ROYALE CHAMPIONSHIP ⚔️</p>
                 </div>
                 
-                <div class="input-group">
-                    <label for="uid">UID:</label>
-                    <input type="text" id="uid" required placeholder="Your Free Fire UID" 
-                           pattern="[0-9]{8,12}" title="Enter 8-12 digit UID">
+                <div class="rules">
+                    <h3>🎮 TOURNAMENT RULES</h3>
+                    <ul>
+                        <li>Each player must have a valid Free Fire account with minimum level 8</li>
+                        <li>No cheating, hacking, or third-party apps allowed - instant disqualification</li>
+                        <li>Players must join the custom room 10 minutes before match starts</li>
+                        <li>Respect all players and maintain fair play - toxic behavior not tolerated</li>
+                        <li>Registration closes 30 minutes before tournament begins</li>
+                        <li>Prize distribution within 24 hours after tournament ends</li>
+                        <li>Tournament organizer's decision is final in all disputes</li>
+                        <li>WiFi connection recommended for stable gameplay</li>
+                    </ul>
                 </div>
                 
-                <div class="input-group">
-                    <label for="email">Gmail:</label>
-                    <input type="email" id="email" required placeholder="Your Gmail Address">
-                </div>
-                
-                <button type="submit" class="btn">
-                    🎯 Register for Tournament
+                <button class="btn" onclick="showPasswordScreen()">
+                    ⚡ AGREE & PROCEED TO BATTLE ⚡
                 </button>
-            </form>
-            
-            <div class="nav-buttons">
-                <button class="nav-btn" onclick="goToPassword()">← Back to Password</button>
-                <button class="nav-btn" onclick="showSlots()">View Registered Slots →</button>
             </div>
-        </div>
-
-        <!-- Slots View Page -->
-        <div id="slotsPage" class="hidden">
-            <div class="logo">🎪 REGISTERED SLOTS</div>
-            <div class="subtitle">Tournament Participants</div>
             
-            <div class="slots-section">
-                <div id="slotsList">
-                    <div style="text-align: center; color: #888; padding: 20px;">
-                        No registrations yet.
-                    </div>
+            <!-- Password Screen -->
+            <div id="passwordScreen" class="hidden">
+                <div class="header">
+                    <h1>🔐 ACCESS CODE REQUIRED</h1>
+                    <p>🎯 ENTER TOURNAMENT PASSWORD 🎯</p>
+                </div>
+                
+                <div class="form-group">
+                    <label for="accessPassword">🔑 Tournament Password:</label>
+                    <input type="password" id="accessPassword" placeholder="Enter your access code">
+                </div>
+                
+                <button class="btn" onclick="verifyPassword()">
+                    🚀 VERIFY & ENTER BATTLEFIELD 🚀
+                </button>
+                
+                <div id="passwordError" class="error-message hidden">
+                    ❌ INVALID PASSWORD! Contact tournament organizers for access code.
                 </div>
             </div>
             
-            <div class="nav-buttons">
-                <button class="nav-btn" onclick="goToRegistration()">← Back to Registration</button>
-                <button class="nav-btn" onclick="refreshSlots()">🔄 Refresh</button>
-                <button class="nav-btn admin-btn" onclick="showAdminPanel()">🔧 Admin Panel</button>
-            </div>
-        </div>
-
-        <!-- Admin Reset Page -->
-        <div id="adminPage" class="hidden">
-            <div class="logo">🔧 ADMIN PANEL</div>
-            <div class="subtitle">Tournament Management</div>
-            
-            <div id="adminError" class="error-message hidden">
-                Wrong admin password! Please enter the correct password.
-            </div>
-            
-            <div class="input-group">
-                <label for="adminPassword">Admin Password:</label>
-                <input type="password" id="adminPassword" placeholder="Enter Admin Password" 
-                       onkeypress="if(event.key==='Enter') checkAdminPassword()">
-            </div>
-            
-            <button class="btn" onclick="checkAdminPassword()">
-                🔑 Enter Admin Panel
-            </button>
-            
-            <div class="nav-buttons">
-                <button class="nav-btn" onclick="goToSlots()">← Back to Slots</button>
-            </div>
-        </div>
-
-        <!-- Admin Control Panel -->
-        <div id="adminControlPage" class="hidden">
-            <div class="logo">⚙️ ADMIN CONTROL</div>
-            <div class="subtitle">Tournament Reset & Management</div>
-            
-            <div id="resetSuccess" class="success-message hidden"></div>
-            
-            <div class="slots-section">
-                <div style="text-align: center; padding: 20px;">
-                    <h3 style="color: #ff6b35; margin-bottom: 20px;">Current Tournament Status</h3>
-                    <div style="color: #00ffff; font-size: 1.2em;">
-                        <div>Total Registrations: <span id="totalCount">0</span></div>
-                        <div>Last Registration: <span id="lastRegistration">None</span></div>
+            <!-- Registration Form -->
+            <div id="registrationScreen" class="hidden">
+                <div class="header">
+                    <h1>📋 WARRIOR REGISTRATION</h1>
+                    <p>⚡ SECURE YOUR BATTLEFIELD SLOT ⚡</p>
+                </div>
+                
+                <div class="slot-counter">
+                    <h4>🎯 AVAILABLE BATTLE SLOTS</h4>
+                    <div class="slot-number" id="slotCounter">100</div>
+                </div>
+                
+                <form id="registrationForm">
+                    <div class="form-group">
+                        <label for="ingameName">🎮 IN-GAME NAME (IGN):</label>
+                        <input type="text" id="ingameName" placeholder="Your Free Fire warrior name" required>
                     </div>
+                    
+                    <div class="form-group">
+                        <label for="uid">🆔 FREE FIRE UID:</label>
+                        <input type="number" id="uid" placeholder="Your unique 12-digit player ID" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">📧 EMAIL ADDRESS:</label>
+                        <input type="email" id="email" placeholder="warrior@gmail.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="gameMode">⚔️ BATTLE MODE:</label>
+                        <select id="gameMode" required>
+                            <option value="">Select Your Combat Mode</option>
+                            <option value="BR-Solo">🏆 Battle Royale - Solo</option>
+                            <option value="BR-Duo">👥 Battle Royale - Duo</option>
+                            <option value="BR-Squad">👨‍👩‍👧‍👦 Battle Royale - Squad</option>
+                            <option value="CS-Solo">⚡ Clash Squad - Solo</option>
+                            <option value="CS-Duo">⚔️ Clash Squad - Duo</option>
+                            <option value="CS-Squad">🔥 Clash Squad - Squad</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mapSelection">🗺️ BATTLEFIELD MAP:</label>
+                        <select id="mapSelection" required>
+                            <option value="">Choose Your Arena</option>
+                            <option value="bermuda">🏝️ Bermuda</option>
+                            <option value="purgatory">🔥 Purgatory</option>
+                            <option value="kalahari">🏜️ Kalahari</option>
+                            <option value="alpine">🏔️ Alpine</option>
+                            <option value="nexterra">🌋 Nexterra</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tournamentTime">⏰ BATTLE TIME:</label>
+                        <select id="tournamentTime" required>
+                            <option value="">Select Your War Time</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn">
+                        🎯 REGISTER FOR BATTLE 🎯
+                    </button>
+                </form>
+                
+                <div id="successMessage" class="success-message hidden">
+                    🎉 REGISTRATION SUCCESSFUL! 🎉<br>
+                    Your battle slot is confirmed! Check this website 5-6 hours before tournament for room details and final instructions.
                 </div>
             </div>
             
-            <button class="btn" onclick="resetTournament()" style="background: linear-gradient(45deg, #dc3545, #c82333);">
-                🗑️ Reset All Slots & Data
-            </button>
-            
-            <div class="nav-buttons">
-                <button class="nav-btn" onclick="goToSlots()">← Back to Slots</button>
-                <button class="nav-btn" onclick="updateAdminStats()">🔄 Refresh Stats</button>
+            <!-- Admin Panel -->
+            <div class="admin-section">
+                <button class="admin-toggle" onclick="toggleAdmin()">
+                    🔧 TOURNAMENT CONTROL PANEL 🔧
+                </button>
+                
+                <div id="adminPanel" class="hidden">
+                    <h3>⚡ TOURNAMENT MANAGEMENT SYSTEM ⚡</h3>
+                    
+                    <div class="admin-controls">
+                        <input type="text" id="adminPassword" class="admin-input" placeholder="Enter Admin Password">
+                        <button class="btn" onclick="loginAdmin()" style="padding: 12px;">🚀 LOGIN</button>
+                        
+                        <input type="text" id="newTimeSlot" class="admin-input" placeholder="Add Time (e.g., 7:00 PM)">
+                        <button class="btn" onclick="addTimeSlot()" style="padding: 12px;">⏰ ADD TIME</button>
+                        
+                        <input type="number" id="newMaxSlots" class="admin-input" placeholder="Set Max Slots">
+                        <button class="btn" onclick="updateMaxSlots()" style="padding: 12px;">🎯 UPDATE SLOTS</button>
+                    </div>
+                    
+                    <div class="export-section">
+                        <h4>📊 DATA EXPORT</h4>
+                        <button class="btn export-btn" onclick="exportToCSV()">📄 EXPORT CSV</button>
+                        <button class="btn export-btn" onclick="exportToGoogleSheets()">📊 COPY FOR GOOGLE SHEETS</button>
+                        <button class="btn export-btn" onclick="showFormattedData()">📋 SHOW FORMATTED DATA</button>
+                    </div>
+                    
+                    <div class="registrations-list" id="registrationsList">
+                        <p>🎮 No warriors registered yet. The battlefield awaits...</p>
+                    </div>
+                    
+                    <div id="exportData" class="hidden" style="margin-top: 20px; padding: 15px; background: rgba(0,0,0,0.8); border: 1px solid #00ffff; border-radius: 10px;">
+                        <h4 style="color: #00ffff; margin-bottom: 15px;">📊 FORMATTED DATA FOR GOOGLE SHEETS</h4>
+                        <textarea id="sheetsData" style="width: 100%; height: 200px; background: rgba(0,0,0,0.9); color: #fff; border: 1px solid #ff6b35; border-radius: 5px; padding: 10px; font-family: monospace;" readonly></textarea>
+                        <br><br>
+                        <button class="btn" onclick="copyToClipboard()" style="padding: 10px;">📋 COPY TO CLIPBOARD</button>
+                        <p style="color: #00ffff; margin-top: 10px; font-size: 0.9em;">Copy this data and paste directly into Google Sheets!</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Tournament settings - You can change passwords here
-        const TOURNAMENT_PASSWORD = "FFTOURNAMENT2025";
-        const ADMIN_PASSWORD = "ADMIN123RESET"; // Admin password for resetting slots
+        // Tournament configuration
+        const config = {
+            tournamentPassword: "FF2024",
+            adminPassword: "ADMIN123",
+            maxSlots: 100,
+            registrations: [],
+            timeSlots: ["6:00 PM", "7:00 PM", "8:00 PM", "9:00 PM", "10:00 PM"],
+            isAdminLoggedIn: false
+        };
         
-        // Storage for registrations (in real website, this would be a database)
-        let registrations = JSON.parse(localStorage.getItem('tournamentRegistrations') || '[]');
-        let slotCounter = parseInt(localStorage.getItem('slotCounter') || '0');
-
-        // Page navigation functions
-        function proceedToPassword() {
-            document.getElementById('rulesPage').classList.add('hidden');
-            document.getElementById('passwordPage').classList.remove('hidden');
-            document.getElementById('tournamentPassword').focus();
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateSlotCounter();
+            loadTimeSlots();
+        });
+        
+        function showPasswordScreen() {
+            document.getElementById('rulesScreen').classList.add('hidden');
+            document.getElementById('passwordScreen').classList.remove('hidden');
         }
-
-        function checkPassword() {
-            const password = document.getElementById('tournamentPassword').value;
+        
+        function verifyPassword() {
+            const password = document.getElementById('accessPassword').value.trim().toUpperCase();
             const errorDiv = document.getElementById('passwordError');
             
-            if (password === TOURNAMENT_PASSWORD) {
+            if (password === config.tournamentPassword) {
+                document.getElementById('passwordScreen').classList.add('hidden');
+                document.getElementById('registrationScreen').classList.remove('hidden');
                 errorDiv.classList.add('hidden');
-                document.getElementById('passwordPage').classList.add('hidden');
-                document.getElementById('registrationPage').classList.remove('hidden');
             } else {
                 errorDiv.classList.remove('hidden');
-                document.getElementById('tournamentPassword').value = '';
+                document.getElementById('accessPassword').value = '';
             }
         }
-
-        function goToRules() {
-            document.getElementById('passwordPage').classList.add('hidden');
-            document.getElementById('rulesPage').classList.remove('hidden');
+        
+        function updateSlotCounter() {
+            const availableSlots = config.maxSlots - config.registrations.length;
+            document.getElementById('slotCounter').textContent = availableSlots;
         }
-
-        function goToPassword() {
-            document.getElementById('registrationPage').classList.add('hidden');
-            document.getElementById('passwordPage').classList.remove('hidden');
-        }
-
-        function goToRegistration() {
-            document.getElementById('slotsPage').classList.add('hidden');
-            document.getElementById('registrationPage').classList.remove('hidden');
-        }
-
-        function showSlots() {
-            document.getElementById('registrationPage').classList.add('hidden');
-            document.getElementById('slotsPage').classList.remove('hidden');
-            displaySlots();
-        }
-
-        function showAdminPanel() {
-            document.getElementById('slotsPage').classList.add('hidden');
-            document.getElementById('adminPage').classList.remove('hidden');
-            document.getElementById('adminPassword').focus();
-        }
-
-        function goToSlots() {
-            document.getElementById('adminPage').classList.add('hidden');
-            document.getElementById('adminControlPage').classList.add('hidden');
-            document.getElementById('slotsPage').classList.remove('hidden');
-            displaySlots();
-        }
-
-        // Admin functions
-        function checkAdminPassword() {
-            const password = document.getElementById('adminPassword').value;
-            const errorDiv = document.getElementById('adminError');
+        
+        function loadTimeSlots() {
+            const timeSelect = document.getElementById('tournamentTime');
+            timeSelect.innerHTML = '<option value="">Select Your War Time</option>';
             
-            if (password === ADMIN_PASSWORD) {
-                errorDiv.classList.add('hidden');
-                document.getElementById('adminPage').classList.add('hidden');
-                document.getElementById('adminControlPage').classList.remove('hidden');
-                updateAdminStats();
-                document.getElementById('adminPassword').value = '';
-            } else {
-                errorDiv.classList.remove('hidden');
-                document.getElementById('adminPassword').value = '';
-            }
+            config.timeSlots.forEach(time => {
+                const option = document.createElement('option');
+                option.value = time;
+                option.textContent = `⚔️ ${time}`;
+                timeSelect.appendChild(option);
+            });
         }
-
-        function updateAdminStats() {
-            document.getElementById('totalCount').textContent = registrations.length;
-            if (registrations.length > 0) {
-                const lastReg = registrations[registrations.length - 1];
-                document.getElementById('lastRegistration').textContent = 
-                    `${lastReg.ingameName} (${lastReg.timestamp})`;
-            } else {
-                document.getElementById('lastRegistration').textContent = 'None';
-            }
-        }
-
-        function resetTournament() {
-            if (confirm('⚠️ Are you sure you want to delete all registrations?\n\nThis action cannot be undone!')) {
-                // Clear all data
-                registrations = [];
-                slotCounter = 0;
-                
-                // Clear storage
-                localStorage.removeItem('tournamentRegistrations');
-                localStorage.removeItem('slotCounter');
-                
-                // Show success message
-                const successDiv = document.getElementById('resetSuccess');
-                successDiv.innerHTML = '<strong>✅ Tournament Reset Successfully!</strong><br>All slots have been cleared.';
-                successDiv.classList.remove('hidden');
-                
-                // Update admin stats
-                updateAdminStats();
-                
-                // Auto-hide success message after 3 seconds
-                setTimeout(() => {
-                    successDiv.classList.add('hidden');
-                }, 3000);
-            }
-        }
-
-        // Registration handling
+        
+        // Registration form handler
         document.getElementById('registrationForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const ingameName = document.getElementById('ingameName').value.trim();
-            const uid = document.getElementById('uid').value.trim();
-            const email = document.getElementById('email').value.trim();
-            
-            const successDiv = document.getElementById('registrationSuccess');
-            const errorDiv = document.getElementById('registrationError');
-            
-            // Reset messages
-            successDiv.classList.add('hidden');
-            errorDiv.classList.add('hidden');
-            
-            // Check for duplicate entries
-            const isDuplicate = registrations.some(reg => 
-                reg.uid === uid || reg.email === email || reg.ingameName === ingameName
-            );
-            
-            if (isDuplicate) {
-                errorDiv.textContent = 'This IGN, UID or Email is already registered!';
-                errorDiv.classList.remove('hidden');
+            if (config.registrations.length >= config.maxSlots) {
+                alert('🚫 BATTLEFIELD FULL! Tournament slots are completely filled. Registration closed.');
                 return;
             }
             
-            // Create new registration
-            slotCounter++;
-            const newRegistration = {
-                slot: slotCounter,
-                ingameName: ingameName,
-                uid: uid,
-                email: email,
-                timestamp: new Date().toLocaleString()
+            const formData = {
+                slotNumber: config.registrations.length + 1,
+                ingameName: document.getElementById('ingameName').value.trim(),
+                uid: document.getElementById('uid').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                gameMode: document.getElementById('gameMode').value,
+                mapSelection: document.getElementById('mapSelection').value,
+                tournamentTime: document.getElementById('tournamentTime').value,
+                registrationTime: new Date().toLocaleString('en-IN', {timeZone: 'Asia/Kolkata'})
             };
             
-            registrations.push(newRegistration);
+            // Check for duplicate UID or email
+            const duplicate = config.registrations.find(reg => 
+                reg.uid === formData.uid || reg.email.toLowerCase() === formData.email.toLowerCase()
+            );
             
-            // Save to storage (in real website, this would be sent to server)
-            localStorage.setItem('tournamentRegistrations', JSON.stringify(registrations));
-            localStorage.setItem('slotCounter', slotCounter.toString());
-            
-            // Show success message
-            successDiv.innerHTML = `
-                <strong>🎉 Registration Successful!</strong><br>
-                Your Slot Number: <strong>${slotCounter}</strong><br>
-                IGN: ${ingameName}<br>
-                Tournament details will be sent to your email.
-            `;
-            successDiv.classList.remove('hidden');
-            
-            // Clear form
-            document.getElementById('registrationForm').reset();
-            
-            // Auto-scroll to success message
-            successDiv.scrollIntoView({ behavior: 'smooth' });
-        });
-
-        // Display registered slots
-        function displaySlots() {
-            const slotsList = document.getElementById('slotsList');
-            
-            if (registrations.length === 0) {
-                slotsList.innerHTML = `
-                    <div style="text-align: center; color: #888; padding: 20px;">
-                        No registrations yet.
-                    </div>
-                `;
+            if (duplicate) {
+                alert('⚠️ DUPLICATE ENTRY! This UID or email is already registered for battle!');
                 return;
             }
             
-            let slotsHTML = '';
-            registrations.forEach(reg => {
-                slotsHTML += `
-                    <div class="slot-item">
-                        <div class="slot-number">Slot #${reg.slot}</div>
-                        <div><strong>IGN:</strong> ${reg.ingameName}</div>
-                        <div><strong>UID:</strong> ${reg.uid}</div>
-                        <div><strong>Email:</strong> ${reg.email}</div>
-                        <div style="color: #888; font-size: 0.9em; margin-top: 5px;">
-                            <strong>Registered:</strong> ${reg.timestamp}
-                        </div>
-                    </div>
-                `;
-            });
+            config.registrations.push(formData);
             
-            slotsList.innerHTML = slotsHTML;
-        }
-
-        function refreshSlots() {
-            // Reload data from storage
-            registrations = JSON.parse(localStorage.getItem('tournamentRegistrations') || '[]');
-            slotCounter = parseInt(localStorage.getItem('slotCounter') || '0');
-            displaySlots();
-        }
-
-        // Initialize page
-        document.addEventListener('DOMContentLoaded', function() {
-            // Load existing registrations
-            refreshSlots();
+            // Show success message
+            document.getElementById('successMessage').classList.remove('hidden');
+            document.getElementById('registrationForm').classList.add('hidden');
+            
+            updateSlotCounter();
+            updateRegistrationsList();
+            
+            // Reset form
+            document.getElementById('registrationForm').reset();
         });
+        
+        // Admin functions
+        function toggleAdmin() {
+            const panel = document.getElementById('adminPanel');
+            panel.classList.toggle('hidden');
+        }
+        
+        function loginAdmin() {
+            const password = document.getElementById('adminPassword').value.trim().toUpperCase();
+            if (password === config.adminPassword) {
+                config.isAdminLoggedIn = true;
+                alert('🎉 ADMIN ACCESS GRANTED! Tournament control activated.');
+                updateRegistrationsList();
+                document.getElementById('adminPassword').value = '';
+            } else {
+                alert('❌ INVALID ADMIN PASSWORD!');
+            }
+        }
 
-        // Console log for admin (tournament organizer can see registrations)
-        console.log('Tournament Admin Access:');
-        console.log('Current Password:', TOURNAMENT_PASSWORD);
-        console.log('Admin Password:', ADMIN_PASSWORD);
-        console.log('View all registrations: refreshSlots()');
-        console.log('Clear all data: localStorage.clear()');
+        function addTimeSlot() {
+            if (!config.isAdminLoggedIn) {
+                alert('⚠️ Please login as admin first!');
+                return;
+            }
+            const newTime = document.getElementById('newTimeSlot').value.trim();
+            if (newTime && !config.timeSlots.includes(newTime)) {
+                config.timeSlots.push(newTime);
+                loadTimeSlots();
+                document.getElementById('newTimeSlot').value = '';
+                alert('⏰ New battle time added successfully!');
+            } else {
+                alert('⚠️ Invalid or duplicate time!');
+            }
+        }
+
+        function updateMaxSlots() {
+            if (!config.isAdminLoggedIn) {
+                alert('⚠️ Please login as admin first!');
+                return;
+            }
+            const newMax = parseInt(document.getElementById('newMaxSlots').value.trim());
+            if (!isNaN(newMax) && newMax >= config.registrations.length && newMax > 0) {
+                config.maxSlots = newMax;
+                updateSlotCounter();
+                document.getElementById('newMaxSlots').value = '';
+                alert(`🎯 Maximum slots updated to ${newMax}!`);
+            } else {
+                alert('⚠️ Invalid number or less than registered players!');
+            }
+        }
+
+        function updateRegistrationsList() {
+            const listDiv = document.getElementById('registrationsList');
+            if (config.registrations.length === 0) {
+                listDiv.innerHTML = '<p>🎮 No warriors registered yet. The battlefield awaits...</p>';
+                return;
+            }
+            listDiv.innerHTML = '';
+            config.registrations.forEach((reg) => {
+                const div = document.createElement('div');
+                div.className = 'registration-item';
+                div.innerHTML = `
+                    <strong>Slot #${reg.slotNumber}</strong> - ${reg.ingameName} (UID: ${reg.uid})<br>
+                    Email: ${reg.email}<br>
+                    Mode: ${reg.gameMode} | Map: ${reg.mapSelection}<br>
+                    Battle Time: ${reg.tournamentTime}<br>
+                    Registered At: ${reg.registrationTime}
+                `;
+                listDiv.appendChild(div);
+            });
+        }
+
+        // Export registrations to CSV format
+        function exportToCSV() {
+            if (!config.isAdminLoggedIn) {
+                alert('⚠️ Please login as admin first!');
+                return;
+            }
+            if (config.registrations.length === 0) {
+                alert('⚠️ No registrations to export!');
+                return;
+            }
+            const headers = ['Slot Number', 'Ingame Name', 'UID', 'Email', 'Game Mode', 'Map Selection', 'Tournament Time', 'Registration Time'];
+            let csvContent = headers.join(',') + '\n';
+            config.registrations.forEach(reg => {
+                const row = [
+                    reg.slotNumber,
+                    `"${reg.ingameName}"`,
+                    reg.uid,
+                    reg.email,
+                    reg.gameMode,
+                    reg.mapSelection,
+                    reg.tournamentTime,
+                    `"${reg.registrationTime}"`
+                ];
+                csvContent += row.join(',') + '\n';
+            });
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'freefire_tournament_registrations.csv';
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Export registrations formatted for Google Sheets copy-paste
+        function exportToGoogleSheets() {
+            if (!config.isAdminLoggedIn) {
+                alert('⚠️ Please login as admin first!');
+                return;
+            }
+            if (config.registrations.length === 0) {
+                alert('⚠️ No registrations to export!');
+                return;
+            }
+            let data = 'Slot\tIngame Name\tUID\tEmail\tGame Mode\tMap Selection\tTournament Time\tRegistration Time\n';
+            config.registrations.forEach(reg => {
+                data += `${reg.slotNumber}\t${reg.ingameName}\t${reg.uid}\t${reg.email}\t${reg.gameMode}\t${reg.mapSelection}\t${reg.tournamentTime}\t${reg.registrationTime}\n`;
+            });
+            document.getElementById('sheetsData').value = data;
+            document.getElementById('exportData').classList.remove('hidden');
+        }
+
+        // Show formatted data pane
+        function showFormattedData() {
+            if (!config.isAdminLoggedIn) {
+                alert('⚠️ Please login as admin first!');
+                return;
+            }
+            exportToGoogleSheets();
+        }
+
+        // Copy to clipboard from textarea
+        function copyToClipboard() {
+            const textArea = document.getElementById('sheetsData');
+            textArea.select();
+            textArea.setSelectionRange(0, 99999); // For mobile devices
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    alert('✅ Data copied to clipboard! You can paste it into Google Sheets.');
+                } else {
+                    alert('❌ Failed to copy data.');
+                }
+            } catch (err) {
+                alert('❌ Browser does not support copy command.');
+            }
+            window.getSelection().removeAllRanges();
+        }
     </script>
 </body>
 </html>
-
-
-
-
-
-
 
 
 
