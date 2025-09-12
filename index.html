@@ -446,7 +446,7 @@
             <!-- Rules and Initial Screen -->
             <div id="rulesScreen">
                 <div class="header">
-                    <h1>🔥 FREE FIRE TOURNAMENT</h1>
+                    <h1>🔥 RED EYE FREE FIRE TOURNAMENT 🔥</h1>
                     <p>⚔️ ELITE BATTLE ROYALE CHAMPIONSHIP ⚔️</p>
                 </div>
                 
@@ -503,57 +503,53 @@
                 </div>
                 
                 <form id="registrationForm">
-                    <div class="form-group">
-                        <label for="ingameName">🎮 IN-GAME NAME (IGN):</label>
-                        <input type="text" id="ingameName" placeholder="Your Free Fire warrior name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="uid">🆔 FREE FIRE UID:</label>
-                        <input type="number" id="uid" placeholder="Your unique 12-digit player ID" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">📧 EMAIL ADDRESS:</label>
-                        <input type="email" id="email" placeholder="warrior@gmail.com" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="gameMode">⚔️ BATTLE MODE:</label>
-                        <select id="gameMode" required>
-                            <option value="">Select Your Combat Mode</option>
-                            <option value="BR-Solo">🏆 Battle Royale - Solo</option>
-                            <option value="BR-Duo">👥 Battle Royale - Duo</option>
-                            <option value="BR-Squad">👨‍👩‍👧‍👦 Battle Royale - Squad</option>
-                            <option value="CS-Solo">⚡ Clash Squad - Solo</option>
-                            <option value="CS-Duo">⚔️ Clash Squad - Duo</option>
-                            <option value="CS-Squad">🔥 Clash Squad - Squad</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="mapSelection">🗺️ BATTLEFIELD MAP:</label>
-                        <select id="mapSelection" required>
-                            <option value="">Choose Your Arena</option>
-                            <option value="bermuda">🏝️ Bermuda</option>
-                            <option value="purgatory">🔥 Purgatory</option>
-                            <option value="kalahari">🏜️ Kalahari</option>
-                            <option value="alpine">🏔️ Alpine</option>
-                            <option value="nexterra">🌋 Nexterra</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="tournamentTime">⏰ BATTLE TIME:</label>
-                        <select id="tournamentTime" required>
-                            <option value="">Select Your War Time</option>
-                        </select>
-                    </div>
-                    
-                    <button type="submit" class="btn">
-                        🎯 REGISTER FOR BATTLE 🎯
-                    </button>
-                </form>
+    <div class="form-group">
+        <label for="ingameName">🎮 IN-GAME NAME (IGN):</label>
+        <input type="text" id="ingameName" placeholder="Your Free Fire warrior name" required>
+    </div>
+    <div class="form-group">
+        <label for="uid">🆔 FREE FIRE UID:</label>
+        <input type="number" id="uid" placeholder="Your unique 12-digit player ID" required>
+    </div>
+    <div class="form-group">
+        <label for="email">📧 EMAIL ADDRESS:</label>
+        <input type="email" id="email" placeholder="warrior@gmail.com" required>
+    </div>
+    <div class="form-group">
+        <label for="gameMode">⚔️ BATTLE MODE:</label>
+        <select id="gameMode" disabled>
+            <option value="BR-Solo">🏆 Battle Royale - Solo</option>
+            <option value="BR-Duo">👥 Battle Royale - Duo</option>
+            <option value="BR-Squad">👨‍👩‍👧‍👦 Battle Royale - Squad</option>
+            <option value="CS-Solo">⚡ Clash Squad - Solo</option>
+            <option value="CS-Duo">⚔️ Clash Squad - Duo</option>
+            <option value="CS-Squad">🔥 Clash Squad - Squad</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="mapSelection">🗺️ BATTLEFIELD MAP:</label>
+        <select id="mapSelection" disabled>
+            <option value="bermuda">🏝️ Bermuda</option>
+            <option value="purgatory">🔥 Purgatory</option>
+            <option value="kalahari">🏜️ Kalahari</option>
+            <option value="alpine">🏔️ Alpine</option>
+            <option value="nexterra">🌋 Nexterra</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="tournamentTime">⏰ BATTLE TIME:</label>
+        <select id="tournamentTime" disabled>
+            <option value="6:00 PM">⏰ 6:00 PM</option>
+            <option value="7:00 PM">⏰ 7:00 PM</option>
+            <option value="8:00 PM">⏰ 8:00 PM</option>
+            <option value="9:00 PM">⏰ 9:00 PM</option>
+            <option value="10:00 PM">⏰ 10:00 PM</option>
+        </select>
+    </div>
+    <button type="submit" class="btn">
+        🎯 REGISTER FOR BATTLE 🎯
+    </button>
+</form>
                 
                 <div id="successMessage" class="success-message hidden">
                     🎉 REGISTRATION SUCCESSFUL! 🎉<br>
@@ -853,6 +849,7 @@
     </script>
 </body>
 </html>
+
 
 
 
